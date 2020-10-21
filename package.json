@@ -1,0 +1,26 @@
+{
+  "name": "tomgobich",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "nuxt",
+    "build": "nuxt build",
+    "start": "nuxt start",
+    "generate": "nuxt generate"
+  },
+  "dependencies": {
+    "@nuxtjs/pwa": "^3.0.2",
+    "core-js": "^3.6.5",
+    "nuxt": "^2.14.6",
+    "vue-eva-icons": "^1.1.1",
+    "vue-kinesis": "^1.1.5"
+  },
+  "devDependencies": {
+    "@nuxtjs/tailwindcss": "^3.1.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "node-sass": "^4.14.1",
+    "prettier": "^2.1.2",
+    "sass-loader": "^10.0.3"
+  }
+}
