@@ -22,7 +22,7 @@
             <div class="glitch__img" :style="glitchStyle"></div>
           </kinesis-element>
           <div
-            class="glitch-content w-full h-full flex items-center justify-center p-12"
+            class="glitch-content w-full h-full flex items-center justify-center md:p-12"
           >
             <div class="hero-gradients"></div>
             <kinesis-element class="p-12" :strength="20" type="translation">
@@ -320,6 +320,20 @@ export default {
   background-color: var(--blend-color-5);
   background-blend-mode: var(--blend-mode-5);
   animation-name: glitch-anim-flash;
+}
+@media screen and (max-width: 450px) {
+  .glitch:not(.bg) .glitch__img {
+    background-size: 110%;
+  }
+  .content__title {
+    font-size: 3rem;
+  }
+  .content__desc,
+  .content__text {
+    display: block;
+    font-size: 16px;
+    padding: theme('spacing.3') theme('spacing.2');
+  }
 }
 /* Animations */
 @keyframes fade-in {
