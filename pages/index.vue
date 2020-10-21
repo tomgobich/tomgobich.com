@@ -21,7 +21,9 @@
             <div class="glitch__img" :style="glitchStyle"></div>
             <div class="glitch__img" :style="glitchStyle"></div>
           </kinesis-element>
-          <div class="w-full h-full flex items-center justify-center p-12">
+          <div
+            class="glitch-content w-full h-full flex items-center justify-center p-12"
+          >
             <div class="hero-gradients"></div>
             <kinesis-element class="p-12" :strength="20" type="translation">
               <div class="text-center">
@@ -125,6 +127,13 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.glitch.bg,
+.glitch-content {
+  opacity: 0;
+  animation: fade-in;
+  animation-duration: 3s;
+  animation-fill-mode: forwards;
+}
 .hero-background {
   background: theme('colors.black');
 }
@@ -313,6 +322,15 @@ export default {
   animation-name: glitch-anim-flash;
 }
 /* Animations */
+@keyframes fade-in {
+  0%,
+  65% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 @keyframes glitch-anim-1 {
   0% {
     opacity: 1;
