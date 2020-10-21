@@ -3,6 +3,17 @@
     <kinesis-container class="hero-background">
       <div class="imgloaded hero-container">
         <section class="hero h-screen overflow-hidden relative bg-drak">
+          <kinesis-element
+            class="glitch bg"
+            :strength="10"
+            :type="'translation'"
+          >
+            <div class="glitch__img" :style="glitchBgStyle"></div>
+            <div class="glitch__img" :style="glitchBgStyle"></div>
+            <div class="glitch__img" :style="glitchBgStyle"></div>
+            <div class="glitch__img" :style="glitchBgStyle"></div>
+            <div class="glitch__img" :style="glitchBgStyle"></div>
+          </kinesis-element>
           <kinesis-element class="glitch" :strength="-10" :type="'translation'">
             <div class="glitch__img" :style="glitchStyle"></div>
             <div class="glitch__img" :style="glitchStyle"></div>
@@ -26,18 +37,6 @@
             <div class="content__action text-center mt-6"></div>
           </div>
         </section>
-        <div class="img-source opacity-50 text-sm">
-          Image by
-          <a
-            href="https://pixabay.com/users/12019-12019/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=139709"
-            >David Mark</a
-          >
-          from
-          <a
-            href="https://pixabay.com/?utm_source=link-attribution&amp;utm_medium=referral&amp;utm_campaign=image&amp;utm_content=139709"
-            >Pixabay</a
-          >
-        </div>
       </div>
     </kinesis-container>
   </div>
@@ -50,7 +49,12 @@ export default {
   computed: {
     glitchStyle() {
       return {
-        backgroundImage: `url('${require('~/assets/images/cincinnati.jpg')}')`,
+        backgroundImage: `url('${require('~/assets/images/logo.svg')}')`,
+      }
+    },
+    glitchBgStyle() {
+      return {
+        backgroundImage: `url('${require('~/assets/images/oriental-tiles.png')}')`,
       }
     },
     welcomeMessage() {
@@ -200,8 +204,8 @@ export default {
   animation-iteration-count: infinite;
 }
 .content__title {
-  background: rgba(0, 0, 0, 0.6);
-  border-radius: theme('borderRadius.lg');
+  background: rgba(0, 0, 0, 0.9);
+  /* border-radius: theme('borderRadius.lg'); */
   font-size: 10vw;
   font-weight: bold;
   line-height: 1.25;
@@ -215,24 +219,27 @@ export default {
   display: inline-block;
   font-size: 2vw;
   font-weight: 500;
-  background: rgba(0, 0, 0, 0.6);
-  border-top-right-radius: theme('borderRadius.lg');
-  border-top-left-radius: theme('borderRadius.lg');
+  background: rgba(0, 0, 0, 0.9);
+  /* border-top-right-radius: theme('borderRadius.lg');
+  border-top-left-radius: theme('borderRadius.lg'); */
   line-height: 1.5;
   padding: theme('padding.2') theme('padding.6');
   animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.225);
+  position: relative;
+  top: 0.5px;
 }
 .content__desc {
   display: inline-block;
   font-size: 2vw;
   font-weight: 500;
-  background: rgba(0, 0, 0, 0.6);
-  border-bottom-right-radius: theme('borderRadius.lg');
-  border-bottom-left-radius: theme('borderRadius.lg');
+  background: rgba(0, 0, 0, 0.9);
+  /* border-bottom-right-radius: theme('borderRadius.lg');
+  border-bottom-left-radius: theme('borderRadius.lg'); */
   line-height: 1.5;
   padding: theme('padding.2') theme('padding.6');
   animation-delay: calc(var(--delay-anim) + var(--time-anim) * 0.25);
   position: relative;
+  top: -0.5px;
   z-index: 70;
 }
 .content__action {
@@ -265,12 +272,16 @@ export default {
   width: calc(100% + var(--gap-horizontal) * 2);
   height: calc(100% + var(--gap-vertical) * 2);
   background-repeat: no-repeat;
-  background-position: 50% 0;
-  background-size: 110%;
+  background-position: center;
+  background-size: 50%;
   background-color: var(--blend-color-1);
-  background-size: cover;
   transform: translate3d(0, 0, 0);
   background-blend-mode: var(--blend-mode-1);
+}
+.glitch.bg .glitch__img {
+  background-repeat: repeat;
+  background-size: auto;
+  opacity: 0.5;
 }
 .glitch__img:nth-child(n + 2) {
   opacity: 0;
