@@ -4,7 +4,7 @@
       <div class="imgloaded hero-container">
         <section class="hero h-screen overflow-hidden relative bg-drak">
           <kinesis-element
-            class="glitch bg"
+            :class="['glitch bg', doubleTime]"
             :strength="10"
             :type="'translation'"
           >
@@ -26,7 +26,7 @@
           >
             <div class="hero-gradients"></div>
             <kinesis-element class="p-12" :strength="20" type="translation">
-              <div class="text-center">
+              <div class="text-center fade-in">
                 <h3 class="content__text text-gray-200">
                   {{ welcomeMessage }}, I'm
                 </h3>
@@ -67,6 +67,7 @@ export default {
   data: () => ({
     bioMessage: `I'm a developer at Gardner Business Media`,
     bioMessageIteration: 0,
+    doubleTime: 'double-time',
   }),
 
   mounted() {
@@ -76,6 +77,7 @@ export default {
       el.addEventListener(animationEvent, () => {
         this.cycleBioMessage()
         setInterval(() => this.cycleBioMessage(), 4000)
+        setTimeout(() => (this.doubleTime = ''), 4000)
       })
   },
 
@@ -130,8 +132,14 @@ export default {
 .glitch.bg,
 .glitch-content {
   opacity: 0;
-  animation: fade-in;
-  animation-duration: 3s;
+  animation-name: fade-in;
+  animation-duration: 1.5s;
+  animation-fill-mode: forwards;
+}
+.fade-in {
+  opacity: 0;
+  animation-name: fade-in;
+  animation-duration: 4s;
   animation-fill-mode: forwards;
 }
 .hero-background {
@@ -204,9 +212,9 @@ export default {
   --blend-color-4: transparent;
   --blend-color-5: theme('colors.blue.400');
 }
-.imgloaded .content__title,
-.imgloaded .content__text,
-.imgloaded .content__desc {
+.content__title,
+.content__text,
+.content__desc {
   animation-name: glitch-anim-text;
   animation-duration: var(--time-anim);
   animation-timing-function: linear;
@@ -295,32 +303,46 @@ export default {
 .glitch__img:nth-child(n + 2) {
   opacity: 0;
 }
-.imgloaded .glitch__img:nth-child(n + 2) {
+.glitch__img:nth-child(n + 2) {
   animation-duration: var(--time-anim);
   animation-delay: var(--delay-anim);
   animation-timing-function: linear;
   animation-iteration-count: infinite;
 }
-.imgloaded .glitch__img:nth-child(2) {
+.glitch__img:nth-child(2) {
   background-color: var(--blend-color-2);
   background-blend-mode: var(--blend-mode-2);
   animation-name: glitch-anim-1;
 }
-.imgloaded .glitch__img:nth-child(3) {
+.glitch__img:nth-child(3) {
   background-color: var(--blend-color-3);
   background-blend-mode: var(--blend-mode-3);
   animation-name: glitch-anim-2;
 }
-.imgloaded .glitch__img:nth-child(4) {
+.glitch__img:nth-child(4) {
   background-color: var(--blend-color-4);
   background-blend-mode: var(--blend-mode-4);
   animation-name: glitch-anim-3;
 }
-.imgloaded .glitch__img:nth-child(5) {
+.glitch__img:nth-child(5) {
   background-color: var(--blend-color-5);
   background-blend-mode: var(--blend-mode-5);
   animation-name: glitch-anim-flash;
 }
+.double-time .glitch__img:nth-child(n + 2) {
+  animation-duration: calc(var(--time-anim) / 2);
+  animation-delay: calc(var(--delay-anim) / 2);
+}
+.glitch.bg .glitch__img:nth-child(2) {
+  animation-name: glitch-anim-3;
+}
+.glitch.bg .glitch__img:nth-child(3) {
+  animation-name: glitch-anim-1;
+}
+.glitch.bg .glitch__img:nth-child(4) {
+  animation-name: glitch-anim-3;
+}
+
 @media screen and (max-width: 450px) {
   .glitch:not(.bg) .glitch__img {
     background-size: 110%;
